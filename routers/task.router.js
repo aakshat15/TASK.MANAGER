@@ -1,10 +1,12 @@
 import express from "express" ;
-import {  createTaskPage , createTask , fetchTask , fetchTaskById} from "../controller/task.controller.js";
+import {  createTaskPage , createTask , fetchTask , fetchTaskById , fetchTaskEdit , updateTaskDetalis} from "../controller/task.controller.js";
 const router = express.Router();
 
 router.get("/create-task",createTaskPage);
 router.post("/create-task",createTask);
 router.get("/all-task" , fetchTask);
 router.get("/load-task/:priorityId" , fetchTaskById);
+router.get("/taskEdit/:priorityId" , fetchTaskEdit);
+router.post("/updateTask/:priorityId" , updateTaskDetalis)
 
 export default router;

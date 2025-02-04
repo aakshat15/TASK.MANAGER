@@ -28,7 +28,21 @@ export default class Task {
             })
         } )
     }
-
+    static fatchPlaceHolderUpdate(id){
+        return new Promise(( resolve , reject) => {
+            pool.getConnection((err , con ) => {
+                if(!err){
+                    let sql ="select * from task where id = ?" 
+                    con.query(sql,[id*1] , (err , result) => {
+                        err ? reject(err) : resolve(result);
+                    })
+                }
+                else{
+                    reject(err);
+                }
+            })
+        })
+    }
     static findByPriority(id){
         return new Promise((resolve , reject ) => {
             pool.getConnection((err , con) => {
@@ -60,6 +74,23 @@ export default class Task {
                     );
                 }
                 else {
+                    reject(err);
+                }
+            })
+        })
+    }
+
+    static updateTask(task){
+        return new promise((resolve , reject) => {
+            pool.getConnection((err , con) => {
+                if(!err){ 
+                    let sql = " UPDATE task SET title = ? , description = ? , priorityId = ?  WHERE id = ? ";
+                    con.query(sql,[task.title , task.description , task.priorityId , task.priorityNumber] , (err , result) => {
+                        con.release();
+                        err ? reject(err) : resolve(true);
+                    });
+                }
+                else{
                     reject(err);
                 }
             })

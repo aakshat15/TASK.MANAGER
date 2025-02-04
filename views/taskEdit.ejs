@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <%-include("bootstrap") %>
+    </head>
+    <body>
+        <div class="container mt-5">
+            <h2>EDIT THE TASK</h2>
+            <form action="/task/updateTask/<%=data[0].id%>"" method="POST">
+                <div class="form-group">
+                   <center><h4 for="title">TASK TITLE</h4></center>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="<%= data[0].title %>" required>
+                </div>
+    
+                <div class="form-group">
+                    <label for="description">TASK DESCRIPTION</label>
+                    <textarea class="form-control" id="description" name="description" rows="3" placeholder="<%= data[0].description %>" required></textarea>
+                </div>
+    
+                <div class="form-group">
+                    <select class="form-control" name="priorityId">
+                        <option>SELECT PRIORITY</option>
+                        <%for(let taskPriority of taskPriorities){%>
+                           <option value="<%=taskPriority.id%>"><%=taskPriority.priority%></option>
+                            <%}%>    
+                    </select>
+                </div>
+    
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    
+    </body>
+</html>
