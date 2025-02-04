@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <%- include("bootstrap.ejs") %>
+    </head>
+    <body>
+        <div class="container d-flex justify-content-center align-items-center" style="height:100vh">
+           <div class="" style="width:30%; height:auto; box-shadow: 10px 10px 10px 10px grey;">
+              <h5 class="bg-secondary p-2 text-center text-white">Sign In</h5>
+              <form class="p-2" method="post" action="/admin/sign-in">
+                <div class="form-group">
+                    <input name="email" type="text" placeholder="Enter email id" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <input name="password" type="password" placeholder="Enter password" class="form-control"/>
+                </div>
+                <div class="form-group">
+                 <button type="submit" class="btn btn-danger">Submit</button>
+                </div>
+              </form>
+           </div>
+        </div>
+    </body>
+</html>
