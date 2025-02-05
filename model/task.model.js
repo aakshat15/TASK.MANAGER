@@ -28,6 +28,7 @@ export default class Task {
             })
         } )
     }
+    
     static fatchPlaceHolderUpdate(id){
         return new Promise(( resolve , reject) => {
             pool.getConnection((err , con ) => {
@@ -43,6 +44,7 @@ export default class Task {
             })
         })
     }
+
     static findByPriority(id){
         return new Promise((resolve , reject ) => {
             pool.getConnection((err , con) => {
@@ -59,7 +61,6 @@ export default class Task {
             })
         } )
     }
-
 
     static create(task) {
         return new Promise((resolve, reject) => {
@@ -80,15 +81,32 @@ export default class Task {
         })
     }
 
-    static updateTask(task){
-        return new promise((resolve , reject) => {
+    static updateTask(task  , id){
+        return new Promise((resolve , reject) => {
             pool.getConnection((err , con) => {
                 if(!err){ 
                     let sql = " UPDATE task SET title = ? , description = ? , priorityId = ?  WHERE id = ? ";
-                    con.query(sql,[task.title , task.description , task.priorityId , task.priorityNumber] , (err , result) => {
+                    con.query(sql,[task.title , task.description , task.priorityId , id] , (err , result) => {
                         con.release();
-                        err ? reject(err) : resolve(true);
+                        err ? reject(err) : resolve(result);
                     });
+                }
+                else{
+                    reject(err);
+                }
+            })
+        })
+    }
+
+    static deleteTask(id){
+        return new Promise((resolve , reject ) =>{
+            pool.getConnection((err , con) =>{
+                if(!err){
+                    let sql = "DELETE FROM task WHERE id = ? ;";
+                    con.query(sql,[id],(err , result) =>{
+                        con.release();
+                        err ? reject(err) : resolve(result);
+                    } )
                 }
                 else{
                     reject(err);

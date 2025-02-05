@@ -29,7 +29,7 @@
                       <label>Create At : <%=task.date%></label>
                       <div class="bg-light p-2 d-flex flex-row justify-content-around" style="width: 100%;">
                         <a href="/task/taskEdit/<%=task.id%>" class="btn btn-outline-primary" style="width:40%;">Edit</a>
-                        <a href="/task/taskDelete" class="btn btn-outline-danger" style="width:40%;">Delete</a>
+                        <a onclick="return confirm('CONFORM DELETE TASK?')"  href="/task/taskDelete/<%=task.id%>" class="btn btn-outline-danger" style="width:40%;">Delete</a>
                       </div>
                     </div>
                   </div>

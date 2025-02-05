@@ -2,7 +2,6 @@ import taskPriority from "../model/task_prority.model.js"
 import task from "../model/task.model.js"
 
 
-
 export const createTaskPage = async (request, response, next) => {
 
     try {
@@ -61,13 +60,27 @@ export const updateTaskDetalis = async( request , response , next) => {
         let priorityNumber = request.params.priorityId;
         
         let { title , description , priorityId } = request.body;
-        console.log(priorityNumber);
-        console.log(request.body);
+        // console.log(priorityNumber);
+        // console.log(request.body);
         
-        let udates = await task.updateTask({title , description , priorityId , priorityNumber})
+        await task.updateTask({title , description , priorityId } , priorityNumber)
+        // console.log("task was done");
+        
         response.redirect("/task/all-task")
     }
     catch(err){
         return response.render("error.ejs");
+    }
+}
+
+export const taskDelete = async(request , response , next) => {
+    try{
+        let priorityId = request.params.priorityId;
+        console.log(priorityId);
+        await task.deleteTask(priorityId)
+        response.redirect("/task/all-task")
+    }
+    catch(err){
+        return response.render("error.ejs")
     }
 }

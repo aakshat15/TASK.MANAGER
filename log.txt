@@ -1,0 +1,10 @@
+sesssion ID STAPES :-
+
+1.FIRST INSTALL (session-express ) IMPORT ON APP.JS (import session from "express-session");
+
+2.THEN USE :: app.use(session({secret:"dflsfjeoriewruoeuxvnmc",resave:true,saveUninitialized: true}));
+
+3.THEN USE IN CONTOLLER WITH THE REQUEST.SESSION.IDLOGIN = TRUE;
+
+4.THEN USE IN MIDDLEWARE USE...
+
